@@ -6,3 +6,5 @@ sudo apt-get install libcanberra-gtk-module
 
 #git 永久记住秘密
 git config --global credential.helper store
+
+
