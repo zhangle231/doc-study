@@ -1,0 +1,26 @@
+### 创建用户
+CREATE USER test1 
+IDENTIFIED BY test;
+GRANT CREATE SESSION TO test1;
+
+###更改密码
+ALTER USER test IDENTIFIED BY test123;
+
+###建表权限
+GRANT  
+CREATE TABLE
+TO test IDENTIFIED BY test123;
+
+GRANT  
+INSERT ANY TABLE
+TO test IDENTIFIED BY test123;
+
+GRANT  
+UNLIMITED TABLESPACE
+TO test IDENTIFIED BY test123;
+
+
+###查询权限
+GRANT SELECT ON test.test TO test1;
+GRANT UPDATE (ID) ON test.test TO test1;
+
