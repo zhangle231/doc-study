@@ -1,0 +1,127 @@
+{\rtf1\ansi\ansicpg0\uc1\deff0\deflang2052\deflangfe2052{\fonttbl{\f0\fnil\fcharset134 ËÎÌו;}{\f1\fnil\fcharset1 Arial;}{\f2\fnil\fcharset1 Times New Roman;}}{\colortbl;\red0\green0\blue0;\red0\green0\blue255;\red0\green255\blue255;\red0\green255\blue0;\red255\green0\blue255;\red255\green0\blue0;\red255\green255\blue0;\red255\green255\blue255;\red0\green0\blue128;\red0\green128\blue128;\red0\green128\blue0;\red128\green0\blue128;\red128\green0\blue0;\red128\green128\blue0;\red128\green128\blue128;\red192\green192\blue192;\red31\green73\blue125;\red255\green102\blue0;\red127\green0\blue85;\red63\green127\blue95;}
+\uc1
+\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f2\b\fs20\cf19 var \plain \f2\fs20 transMeta = meta;
+\par\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f2\b\fs20\cf19 var \plain \f2\fs20 dbName = \plain \f2\b\fs20\cf19 null\plain \f2\fs20 ;
+\par\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f2\b\fs20\cf19 var \plain \f2\fs20 sql = \plain \f2\b\fs20\cf19 null\plain \f2\fs20 ;
+\par\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f2\b\fs20\cf19 var \plain \f2\fs20 sqlList = transMeta.getSQLStatements();
+\par\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f2\fs20\cf20 // Alert("sqlList.size() = "+sqlList.size());
+\par\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f2\b\fs20\cf19 for \plain \f2\fs20 (\plain \f2\b\fs20\cf19 var \plain \f2\fs20 i=0;i<sqlList.size();i++) \{
+\par\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f2\fs20   \plain \f2\b\fs20\cf19 var \plain \f2\fs20 sqlStatement = sqlList.get(i);
+\par\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f2\fs20   \plain \f2\fs20\cf20 // Alert("DB: "+dbMeta.getName()+"  SQL: "+sql);
+\par\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f2\fs20   \plain \f2\b\fs20\cf19 var \plain \f2\fs20 newRow = \plain \f2\fs20\cf18 createRowCopy\plain \f2\fs20 (\plain \f2\fs20\cf18 getOutputRowMeta\plain \f2\fs20 ().size());
+\par\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f2\fs20   \plain \f2\b\fs20\cf19 var \plain \f2\fs20 rowIndex = \plain \f2\fs20\cf18 getInputRowMeta\plain \f2\fs20 ().size();
+\par\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f2\fs20   newRow[rowIndex++] = sqlStatement.getDatabase().getName();
+\par\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f2\fs20   newRow[rowIndex++] = sqlStatement.getSQL();
+\par\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f2\fs20   \plain \f2\fs20\cf18 putRow\plain \f2\fs20 (newRow);
+\par\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f2\fs20 \}
+\par\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f2\fs20 KFCLUB                         CLUB_AUTO_RESCUE
+\par\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20\cf17 select a.t_in_tm,a.c_ply_no,a.c_facilitator_hf
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20\cf17 from \plain \f2\fs20 KFCLUB.CLUB_AUTO_RESCUE\plain \f2\fs20\cf17  a
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20\cf17 where a.c_ply_no in ('2145903362018000959','2055003362018014674','2101303362018001029')
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 T_IN_TM      C_PLY_NO                         C
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 ------------ -------------------------------- -
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 17-JUL-19    2101303362018001029              5
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 17-JUL-19    2101303362018001029              5
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 17-JUL-19    2145903362018000959              1
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 17-JUL-19    2055003362018014674              1
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 dba_log_groups
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  Name                                      Null?    Type
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  ----------------------------------------- -------- ----------------------------
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  OWNER                                     NOT NULL VARCHAR2(30)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  LOG_GROUP_NAME                            NOT NULL VARCHAR2(30)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  TABLE_NAME                                NOT NULL VARCHAR2(30)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  LOG_GROUP_TYPE                                     VARCHAR2(19)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  ALWAYS                                             VARCHAR2(11)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  GENERATED                                          VARCHAR2(14
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 select * from dba_log_groups where owner = 'KFCLUB' and table_name = 'CLUB_AUTO_RESCUE';
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_SVS_NO                                  NOT NULL VARCHAR2(32)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_PLY_NO                                           VARCHAR2(32)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_CONTACT_NME                                      VARCHAR2(100)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_INSURED_NME                                      VARCHAR2(100)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_CONTACT_NO                                       VARCHAR2(20)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  T_IN_TM                                            DATE
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_PLATE_NO                                         VARCHAR2(20)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_SVS_STATUS                                       VARCHAR2(1)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_CALLBACK_FLAG                                    VARCHAR2(1)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  T_FINISH_TM_PG                                     DATE
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_TYPE_NME                                         VARCHAR2(30)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_ORG_NME                                          VARCHAR2(50)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_CUR_MODEL_NME                                    VARCHAR2(100)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_RESCUE_ADDR                                      VARCHAR2(400)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_DETAIL_ADDR                                      VARCHAR2(400)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_BZ                                               VARCHAR2(200)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_SVS_TYPE_PG                                      VARCHAR2(20)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_FACILITATOR_PG                                   VARCHAR2(1)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  T_PG_TM                                            DATE
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_DISPATCHER                                       VARCHAR2(50)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_OPER_ID_PG                                       VARCHAR2(20)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_OPER_NME_PG                                      VARCHAR2(50)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_OPER_TM_PG                                       DATE
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_SHOUZU_FLAG                                      VARCHAR2(1)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_SVS_RESULT_GZ                                    VARCHAR2(1)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  T_FINISH_TM_GZ                                     DATE
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_FAIL_REASON_GZ                                   VARCHAR2(200)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_SVS_TYPE_GZ                                      VARCHAR2(20)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_FACILITATOR_GZ                                   VARCHAR2(1)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  N_PAY_MONEY_GZ                                     NUMBER(12,2)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_OPER_ID_GZ                                       VARCHAR2(20)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_OPER_NME_GZ                                      VARCHAR2(50)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_OPER_TM_GZ                                       DATE
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_SVS_RESULT_HF                                    VARCHAR2(1)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  T_FINISH_TM_HF                                     DATE
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_SVS_TYPE_HF                                      VARCHAR2(20)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  T_REACH_TM                                         DATE
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_SATISFY_FLAG                                     VARCHAR2(1)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_ADVICE                                           VARCHAR2(200)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_EXTRA_PAY_FLAG                                   VARCHAR2(1)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  N_PAY_MONEY_HF                                     NUMBER(12,2)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_KONGSHI_FLAG                                     VARCHAR2(1)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_FACILITATOR_HF                                   VARCHAR2(1)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_FAIL_REASON_NO                                   VARCHAR2(2)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_FAIL_REASON_HF                                   VARCHAR2(50)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_OPER_ID_HF                                       VARCHAR2(20)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_OPER_NME_HF                                      VARCHAR2(50)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_OPER_TM_HF                                       DATE
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_BZ_1                                             VARCHAR2(50)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_BZ_2                                             VARCHAR2(50)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_BZ_3                                             VARCHAR2(100)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_SVS_RESULT                                       VARCHAR2(1)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  T_FINISH_TM                                        DATE
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  C_BZ_GZ                                            VARCHAR2(200)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20  IS_EFFECT                                          VARCHAR2(1)
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 
+\par\pard\fi0\li0\qj\ri0\sb0\sa0\itap0 \plain \f2\fs20 \par}

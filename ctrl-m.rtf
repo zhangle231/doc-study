@@ -1,0 +1,93 @@
+{\rtf1\ansi\ansicpg0\uc1\deff0\deflang2052\deflangfe2052{\fonttbl{\f0\fnil\fcharset134 ËÎÌו;}{\f1\fnil\fcharset1 Arial;}}{\colortbl;\red0\green0\blue0;\red0\green0\blue255;\red0\green255\blue255;\red0\green255\blue0;\red255\green0\blue255;\red255\green0\blue0;\red255\green255\blue0;\red255\green255\blue255;\red0\green0\blue128;\red0\green128\blue128;\red0\green128\blue0;\red128\green0\blue128;\red128\green0\blue0;\red128\green128\blue0;\red128\green128\blue128;\red192\green192\blue192;}
+\uc1
+\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 TABLE_NAME
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 ------------------------------------------------------------
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 ACTIVEJOBSAUTHORIZATIONS
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 JOBACTIONS
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 DEF_WS_JOBS
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 select count(1) from DEF_VER_JOB;
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 SQL> SELECT NAME FROM V$ARCHIVED_LOG  WHERE FIRST_TIME = (SELECT MAX(FIRST_TIME) FROM V$ARCHIVED_LOG);
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 NAME
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 --------------------------------------------------------------------------------
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 /oracle/11.2.0/db/dbs/arch1_2184_939413640.dbf
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 EXECUTE DBMS_LOGMNR.ADD_LOGFILE( -
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1   LOGFILENAME => '/oracle/11.2.0/db/dbs/arch1_2184_939413640.dbf', -
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1   OPTIONS => DBMS_LOGMNR.NEW);
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 EXECUTE DBMS_LOGMNR.START_LOGMNR( -
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1    OPTIONS => DBMS_LOGMNR.DICT_FROM_ONLINE_CATALOG);
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 execute dbms_logmnr.end_logmnr;
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 select TABLE_NAME,SEG_OWNER,sql_undo from V$LOGMNR_CONTENTS where SEG_OWNER='sys' ;
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 select TABLE_NAME,SEG_OWNER,sql_undo from V$LOGMNR_CONTENTS where TABLE_NAME='TEST' ;
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 select * from v$logfile;
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 EXECUTE DBMS_LOGMNR.ADD_LOGFILE( -
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1   LOGFILENAME => '/oracle/oradata/lpdb1/redo01.log', -
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1   OPTIONS => DBMS_LOGMNR.NEW);
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 select TABLE_NAME,SEG_OWNER,sql_redo from V$LOGMNR_CONTENTS where TABLE_NAME='TEST' ;
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 SQL> select TABLE_NAME,SEG_OWNER,sql_undo from V$LOGMNR_CONTENTS where TABLE_NAME='TEST' ;
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 TABLE_NAME                       SEG_OWNER
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 -------------------------------- --------------------------------
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 SQL_UNDO
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 --------------------------------------------------------------------------------
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 TEST                             SYS
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 TEST                             SYS
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 delete from "SYS"."TEST" where "ID" = '1' and "NAME" = '1' and ROWID = 'AAAhqWAA
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 BAABfhZAAA';
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 TEST                             SYS
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 delete from "SYS"."TEST" where "ID" = '2' and "NAME" = '2' and ROWID = 'AAAhqWAA
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 TABLE_NAME                       SEG_OWNER
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 -------------------------------- --------------------------------
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 SQL_UNDO
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 --------------------------------------------------------------------------------
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 BAABfhZAAB';
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 SQL> select TABLE_NAME,SEG_OWNER,sql_redo from V$LOGMNR_CONTENTS where TABLE_NAME='TEST' ;
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 TABLE_NAME                       SEG_OWNER
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 -------------------------------- --------------------------------
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 SQL_REDO
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 --------------------------------------------------------------------------------
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 TEST                             SYS
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1  create table test (id int,name varchar(100));
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 TEST                             SYS
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 insert into "SYS"."TEST"("ID","NAME") values ('1','1');
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 TEST                             SYS
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 insert into "SYS"."TEST"("ID","NAME") values ('2','2');
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 SQL> show parameter archive_lag_target
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 NAME                                 TYPE        VALUE
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 ------------------------------------ ----------- ------------------------------
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 archive_lag_target                   integer     0
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 \par}

@@ -1,0 +1,224 @@
+{\rtf1\ansi\ansicpg0\uc1\deff0\deflang2052\deflangfe2052{\fonttbl{\f0\fnil\fcharset134 ËÎÌו;}{\f1\fnil\fcharset1 Arial;}}{\colortbl;\red0\green0\blue0;\red0\green0\blue255;\red0\green255\blue255;\red0\green255\blue0;\red255\green0\blue255;\red255\green0\blue0;\red255\green255\blue0;\red255\green255\blue255;\red0\green0\blue128;\red0\green128\blue128;\red0\green128\blue0;\red128\green0\blue128;\red128\green0\blue0;\red128\green128\blue0;\red128\green128\blue128;\red192\green192\blue192;}
+\uc1
+\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 show linesize; --\uc2\u26597 \'b2\'e9\uc1 \uc2\u30475 \'bf\'b4\uc1 \uc2\u24403 \'b5\'b1\uc1 \uc2\u21069 \'c7\'b0\uc1 \uc2\u30340 \'b5\'c4\uc1 linesize\uc2\u23485 \'bf\'ed\uc1 \uc2\u24230 \'b6\'c8\uc1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 set linesize 300; --\uc2\u-29762 \'c9\'e8\uc1 \uc2\u32622 \'d6\'c3\uc1 linesize\uc2\u23485 \'bf\'ed\uc1 \uc2\u24230 \'b6\'c8\uc1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 show pagesize; --\uc2\u26597 \'b2\'e9\uc1 \uc2\u30475 \'bf\'b4\uc1 \uc2\u30446 \'c4\'bf\uc1 \uc2\u21069 \'c7\'b0\uc1 \uc2\u30340 \'b5\'c4\uc1 pagesize
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 set pagesize 300; --\uc2\u-29762 \'c9\'e8\uc1 \uc2\u32622 \'d6\'c3\uc1 pagesize\uc2\u20026 \'ce\'aa\uc1 300
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 ORACLE\uc2\u26597 \'b2\'e9\uc1 \uc2\u30475 \'bf\'b4\uc1 \uc2\u-30616 \'b1\'ed\uc1 \uc2\u31354 \'bf\'d5\uc1 \uc2\u-27148 \'bc\'e4\uc1 \uc2\u20351 \'ca\'b9\uc1 \uc2\u29992 \'d3\'c3\uc1 \uc2\u29575 \'c2\'ca\uc1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 SELECT Upper(F.TABLESPACE_NAME)         ,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1        D.TOT_GROOTTE_MB                 ,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1        D.TOT_GROOTTE_MB - F.TOTAL_BYTES ,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1        To_char(Round(( D.TOT_GROOTTE_MB - F.TOTAL_BYTES ) / D.TOT_GROOTTE_MB * 100, 2), '990.99')
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1        || '%'                           ,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1        F.TOTAL_BYTES                    ,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1        F.MAX_BYTES                      
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 FROM   (SELECT TABLESPACE_NAME,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1                Round(Sum(BYTES) / ( 1024 * 1024 ), 2) TOTAL_BYTES,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1                Round(Max(BYTES) / ( 1024 * 1024 ), 2) MAX_BYTES
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1         FROM   SYS.DBA_FREE_SPACE
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1         GROUP  BY TABLESPACE_NAME) F,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1        (SELECT DD.TABLESPACE_NAME,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1                Round(Sum(DD.BYTES) / ( 1024 * 1024 ), 2) TOT_GROOTTE_MB
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1         FROM   SYS.DBA_DATA_FILES DD
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1         GROUP  BY DD.TABLESPACE_NAME) D
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 WHERE  D.TABLESPACE_NAME = F.TABLESPACE_NAME
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 ORDER  BY 2;
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 UPPER(F.TABLESPACE_NAME)       TOT_GROOTTE_MB D.TOT_GROOTTE_MB-F.TOTAL_BYTES
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 ------------------------------ -------------- ------------------------------
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 TO_CHAR( TOTAL_BYTES  MAX_BYTES
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 -------- ----------- ----------
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 CTMUSER_TBS                              2500                          19.12
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1    0.76%     2480.88    2480.88
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 EBAO_DATA                           406565.88                      390892.19
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1   96.14%    15673.69     509.63
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 EMUSER_TBS                              12684                       12032.44
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1   94.86%      651.56        651
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 UPPER(F.TABLESPACE_NAME)       TOT_GROOTTE_MB D.TOT_GROOTTE_MB-F.TOTAL_BYTES
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 ------------------------------ -------------- ------------------------------
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 TO_CHAR( TOTAL_BYTES  MAX_BYTES
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 -------- ----------- ----------
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 SYSAUX                                   6430                        6121.19
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1   95.20%      308.81        308
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 SYSTEM                                   3120                        3055.87
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1   97.94%       64.13         64
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 UNDOTBS1                                63470                       16144.44
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1   25.44%    47325.56       3968
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 UPPER(F.TABLESPACE_NAME)       TOT_GROOTTE_MB D.TOT_GROOTTE_MB-F.TOTAL_BYTES
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 ------------------------------ -------------- ------------------------------
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 TO_CHAR( TOTAL_BYTES  MAX_BYTES
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 -------- ----------- ----------
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 USERS                                 96448.5                       92829.44
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1   96.25%     3619.06       2035
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 ZLJ_DATA                                56320                        2421.25
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1    4.30%    53898.75       3968
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 SELECT TABLE_NAME,TABLESPACE_NAME FROM DBA_TABLES;
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 SELECT TABLE_NAME,TABLESPACE_NAME FROM DBA_TABLES where OWNER = 'GGS' and TABLE_NAME = 'WEB_APP_BASE';
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 SELECT TABLE_NAME,TABLESPACE_NAME FROM DBA_TABLES where TABLESPACE_NAME = 'EBAO_DATA';
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 SELECT distinct OWNER FROM DBA_TABLES where TABLESPACE_NAME = 'EBAO_DATA';
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 SELECT TABLE_NAME,DEF_TABLESPACE_NAME FROM ALL_PART_TABLES where OWNER = 'GGS' and TABLE_NAME = 'WEB_APP_BASE';
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 \uc2\u21024 \'c9\'be\uc1 \uc2\u-27036 \'b3\'fd\uc1 \uc2\u-30616 \'b1\'ed\uc1 \uc2\u31354 \'bf\'d5\uc1 \uc2\u-27148 \'bc\'e4\uc1 \uc2\u21450 \'bc\'b0\uc1 \uc2\u25968 \'ca\'fd\uc1 \uc2\u25454 \'be\'dd\uc1 \uc2\u25991 \'ce\'c4\uc1 \uc2\u20214 \'bc\'fe\uc1 \uc2\u26041 \'b7\'bd\uc1 \uc2\u27861 \'b7\'a8\uc1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 DROP TABLESPACE EBAO_DATA including CONTENTS AND DATAFILES;
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 select owner, MVIEW_NAME from dba_mviews where owner in( 'ABPROD', 'VHL_V6');
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 select table_name,TABLESPACE_NAME  from dba_tables where table_name = 'VT_CLM_AP30_PRE_ARCHIVE_SEARCH';
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 drop materialized view ABPROD.VT_CLM_AP30_PRE_ARCHIVE_SEARCH;
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 ABPROD
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 VHL_V6
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 \uc2\u26816 \'bc\'ec\uc1 \uc2\u26597 \'b2\'e9\uc1 \uc2\u-30616 \'b1\'ed\uc1 \uc2\u31354 \'bf\'d5\uc1 \uc2\u-27148 \'bc\'e4\uc1 \uc2\u30340 \'b5\'c4\uc1 \uc2\u32034 \'cb\'f7\uc1 \uc2\u24341 \'d2\'fd\uc1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 SELECT I.owner, I.INDEX_NAME, I.INDEX_TYPE, I.TABLESPACE_NAME, I.TABLE_OWNER FROM DBA_INDEXES I WHERE I.TABLESPACE_NAME = 'EBAO_DATA';
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 SELECT C.CONSTRAINT_NAME, C.CONSTRAINT_TYPE, C.owner, C.TABLE_NAME, C.INDEX_NAME FROM DBA_CONSTRAINTS C  where index_name in ('PK_T_REPORT_DEFINE','PK_REPORTDEFINE','VALIDREP');
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 alter table GGS.T_REPORT_DEFINE drop constraint PK_T_REPORT_DEFINE cascade;
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 alter table GGS.T_REPORT_DEFINE drop constraint PK_REPORTDEFINE cascade;
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 \uc2\u21046 \'d6\'c6\uc1 \uc2\u23450 \'b6\'a8\uc1 \uc2\u-30616 \'b1\'ed\uc1 \uc2\u31354 \'bf\'d5\uc1 \uc2\u-27148 \'bc\'e4\uc1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 create table tb_jg_sd tablespace emsdatan as select * from tb_jg where jgfl='sd';
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 impdp/expdp
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 select table_name from all_tables where owner = 'GGS';
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 select count(1) from ggs.TEST;
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 CREATE DIRECTORY dpump_zl AS '/data07/zl/dump';
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 expdp ggs/ggs@lpdb1 DIRECTORY=dpump_zl DUMPFILE=ggs_test.dmp TABLES=GGS.TEST
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 impdp ggs/ggs@lpdb1 DIRECTORY=dpump_zl DUMPFILE=ggs_test.dmp TABLES=GGS.TEST remap_table=GGS.TEST:TEST_NEW
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 impdp backup/backup@lpdb1 DIRECTORY=dpump_zl DUMPFILE=ggs_test.dmp TABLES=GGS.TEST remap_table=GGS.TEST:TEST_NEW REMAP_SCHEMA=GGS:backup remap_tablespace=USERS:backup
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 remap_table= A1:B1, A2:B1
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 \uc2\u26032 \'d0\'c2\uc1 \uc2\u24314 \'bd\'a8\uc1 \uc2\u-30616 \'b1\'ed\uc1 \uc2\u31354 \'bf\'d5\uc1 \uc2\u-27148 \'bc\'e4\uc1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 CREATE BIGFILE TABLESPACE backup DATAFILE '/data07/zl/oracle/data/01.dbf' SIZE 50G
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 expdp ggs/ggs@lpdb1 DIRECTORY=dpump_zl DUMPFILE=WEB_APP_BASE.dmp TABLES=GGS.WEB_APP_BASE
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 impdp ggs/ggs@lpdb1 DIRECTORY=dpump_zl DUMPFILE=WEB_APP_BASE.dmp TABLES=GGS.WEB_APP_BASE remap_table=GGS.WEB_APP_BASE:WEB_APP_BASE_NEW REMAP_SCHEMA=GGS:backup remap_tablespace=USERS:backup
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 SELECT TABLE_NAME,TABLESPACE_NAME FROM DBA_TABLES where OWNER = 'BACKUP' and TABLE_NAME = 'TEST_NEW';
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 CREATE USER backup
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 IDENTIFIED BY backup
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 DEFAULT TABLESPACE backup;
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 GRANT CONNECT, RESOURCE, DBA TO backup;
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 cocos new MyGame -p com.mygame -l js -d D:\\\\code\\\\game\\\\MyGame
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 cocos compile -s D:\\code\\game\\MyGame\\MyGame -p web  -m release 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 cocos run -s D:\\code\\game\\MyGame\\MyGame -p web
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 #\uc2\u29992 \'d3\'c3\uc1 \uc2\u25143 \'bb\'a7\uc1 \uc2\u-30616 \'b1\'ed\uc1 \uc2\u31354 \'bf\'d5\uc1 \uc2\u-27148 \'bc\'e4\uc1 \uc2\u20351 \'ca\'b9\uc1 \uc2\u29992 \'d3\'c3\uc1 \uc2\u24773 \'c7\'e9\uc1 \uc2\u20917 \'bf\'f6\uc1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 select a.USERNAME,b.* from
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 dba_users a
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 left join 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 (
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 SELECT a.tablespace_name TABLESPACE_NAME,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1        total / 1048576 TOTAL_M,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1        free / 1048576 FREE_M,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1        (total - free) / 1048576 USED_M,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1        ROUND((total - free) / total, 4) * 100 "USED%",
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1        autoextensible autoextem
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1   FROM (SELECT tablespace_name, SUM(bytes) free
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1           FROM DBA_FREE_SPACE
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1          GROUP BY tablespace_name) a,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1        (SELECT tablespace_name,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1                SUM(bytes) total,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1                max(autoextensible) autoextensible
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1           FROM DBA_DATA_FILES
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1          GROUP BY tablespace_name) b
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1  WHERE a.tablespace_name = b.tablespace_name
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1  order by 6, 5 desc
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 ) b
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 on a.DEFAULT_TABLESPACE = b.TABLESPACE_NAME;
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 #\uc2\u29992 \'d3\'c3\uc1 \uc2\u25143 \'bb\'a7\uc1 \uc2\u20020 \'c1\'d9\uc1 \uc2\u26102 \'ca\'b1\uc1 \uc2\u31354 \'bf\'d5\uc1 \uc2\u-27148 \'bc\'e4\uc1 \uc2\u20351 \'ca\'b9\uc1 \uc2\u29992 \'d3\'c3\uc1 \uc2\u24773 \'c7\'e9\uc1 \uc2\u20917 \'bf\'f6\uc1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 select a.USERNAME,a.TEMPORARY_TABLESPACE,b.* from
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 dba_users a
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 left join 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 (
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 SELECT a.tablespace_name TABLESPACE_NAME,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1        total / 1048576 TOTAL_M,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1        free / 1048576 FREE_M,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1        (total - free) / 1048576 USED_M,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1        ROUND((total - free) / total, 4) * 100 "USED%",
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1        autoextensible autoextem
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1   FROM (SELECT tablespace_name, SUM(bytes) free
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1           FROM DBA_FREE_SPACE
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1          GROUP BY tablespace_name) a,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1        (SELECT tablespace_name,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1                SUM(bytes) total,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1                max(autoextensible) autoextensible
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1           FROM DBA_DATA_FILES
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1          GROUP BY tablespace_name) b
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1  WHERE a.tablespace_name = b.tablespace_name
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1  order by 6, 5 desc
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 ) b
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 on a.TEMPORARY_TABLESPACE = b.TABLESPACE_NAME;
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 set numwidth 20
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 col total_bytes format 9999999
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 col total_bytes format a25
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 select * from (
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1     Select a.tablespace_name,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1     to_char(a.bytes/1024/1024,'9999,999.999') total_bytes,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1     to_char(b.bytes/1024/1024,'9999,999.999') free_bytes,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1     to_char(a.bytes/1024/1024 - b.bytes/1024/1024,'9999,999.999') use_bytes,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1     to_char((1 - b.bytes/a.bytes)*100,'99.99') || '%' use
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1     from (select tablespace_name,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1     sum(bytes) bytes
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1     from dba_data_files
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1    group by tablespace_name) a,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1    (select tablespace_name,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1    sum(bytes) bytes
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1    from dba_free_space
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1    group by tablespace_name) b
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1    where a.tablespace_name = b.tablespace_name
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1    union all
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1    select c.tablespace_name,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1    to_char(c.bytes/1024/1024,'9999,999.999') total_bytes,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1    to_char( (c.bytes-d.bytes_used)/1024/1024,'9999,999.999') free_bytes,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1    to_char(d.bytes_used/1024/1024,'9999,999.999') use_bytes,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1    to_char(d.bytes_used*100/c.bytes,'99.99') || '%' use
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1    from
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1    (select tablespace_name,sum(bytes) bytes
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1    from dba_temp_files group by tablespace_name) c,
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1    (select tablespace_name,sum(bytes_cached) bytes_used
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1    from v$temp_extent_pool group by tablespace_name) d
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1    where c.tablespace_name = d.tablespace_name
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1    );
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 \par}

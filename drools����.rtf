@@ -1,0 +1,21 @@
+{\rtf1\ansi\ansicpg0\uc1\deff0\deflang2052\deflangfe2052{\fonttbl{\f0\fnil\fcharset134 ËÎÌו;}{\f1\fnil\fcharset1 Arial;}}{\colortbl;\red0\green0\blue0;\red0\green0\blue255;\red0\green255\blue255;\red0\green255\blue0;\red255\green0\blue255;\red255\green0\blue0;\red255\green255\blue0;\red255\green255\blue255;\red0\green0\blue128;\red0\green128\blue128;\red0\green128\blue0;\red128\green0\blue128;\red128\green0\blue0;\red128\green128\blue0;\red128\green128\blue128;\red192\green192\blue192;}
+\uc1
+\pard\sl360\slmult1\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 drools\uc2\u20837 \'c8\'eb\uc1 \uc2\u-27160 \'c3\'c5\uc1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 knowledge-api.jar - this provides the interfaces and factories. It also helps clearly show what is intended as a user API and what is just an engine API.
+\par\pard\sl360\slmult1\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 knowledge-internal-api.jar - this provides internal interfaces and factories.
+\par\pard\sl360\slmult1\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 drools-core.jar - this is the core Drools engine, runtime component. Contains both the RETE engine and the LEAPS engine. This is the only runtime dependency if you are pre-compiling rules (and 
+\par\pard\sl360\slmult1\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 deploying via Package or RuleBase objects).
+\par\pard\sl360\slmult1\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 drools-compiler.jar - this contains the compiler/builder components to take rule source, and build executable rule bases. This is often a runtime dependency of your application, but it need not be if you are pre-compiling your rules. This depends on drools-core.
+\par\pard\sl360\slmult1\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 drools-jsr94.jar - this is the JSR-94 compliant implementation, this is essentially a layer over the drools-compiler component. Note that due to the nature of the JSR-94 specification, not all features are easily exposed via this interface. In some cases, it will be easier to go direct to the Drools API, but in some environments the JSR-94 is mandated.
+\par\pard\sl360\slmult1\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 drools-decisiontables.jar - this is the decision tables 'compiler' component, which uses the drools-compiler component. This supports both excel and CSV input formats.
+\par\pard\sl360\slmult1\fi375\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 http://download.eclipse.org/tools/gef/updates/releases/
+\par\pard\sl360\slmult1\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 
+\par\pard\sl360\slmult1\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f0\fs18\cf1 ./add-user.bat -a -u kieserver -p kieserver  -g admin,kie-server}

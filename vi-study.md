@@ -11,3 +11,6 @@ dd 删除正行
 line one
 line two
 line three
+
+## 设置缩进
+set tabstop = 4
