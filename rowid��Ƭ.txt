@@ -1,0 +1,33 @@
+SELECT rownum || ', ' || ' rowid between ' || chr(39) ||
+       dbms_rowid.rowid_create(1, DOI, lo_fno, lo_block, 0) || chr(39) ||
+       ' and  ' || chr(39) ||
+       dbms_rowid.rowid_create(1, DOI, hi_fno, hi_block, 1000000) ||
+       chr(39) data
+  FROM (SELECT DISTINCT DOI,
+                        grp,
+                        first_value(relative_fno) over(PARTITION BY DOI, grp ORDER BY relative_fno, block_id rows BETWEEN unbounded preceding AND unbounded following) lo_fno,
+                        first_value(block_id) over(PARTITION BY DOI, grp ORDER BY relative_fno, block_id rows BETWEEN unbounded preceding AND unbounded following) lo_block,
+                        last_value(relative_fno) over(PARTITION BY DOI, grp ORDER BY relative_fno, block_id rows BETWEEN unbounded preceding AND unbounded following) hi_fno,
+                        last_value(block_id + blocks - 1) over(PARTITION BY DOI, grp ORDER BY relative_fno, block_id rows BETWEEN unbounded preceding AND unbounded following) hi_block,
+                        SUM(blocks) over(PARTITION BY DOI, grp) sum_blocks,
+                        SUBOBJECT_NAME
+          FROM (SELECT obj.OBJECT_ID,
+                       obj.SUBOBJECT_NAME,
+                       obj.DATA_OBJECT_ID AS DOI,
+                       ext.relative_fno,
+                       ext.block_id,
+                       SUM(blocks) over() SUM,
+                       SUM(blocks) over(ORDER BY DATA_OBJECT_ID, relative_fno, block_id) - 0.01 sum_fno,
+                       TRUNC((SUM(blocks) over(ORDER BY DATA_OBJECT_ID,
+                                               relative_fno,
+                                               block_id) - 0.01) /
+                             (SUM(blocks) over() / &cnt)) grp,
+                       ext.blocks
+                  FROM dba_extents ext, dba_objects obj
+                 WHERE ext.segment_name = '&object_name'
+                   AND ext.owner = '&owner'
+                   AND obj.owner = ext.owner
+                   AND obj.object_name = ext.segment_name
+                   AND obj.DATA_OBJECT_ID IS NOT NULL
+                 ORDER BY DATA_OBJECT_ID, relative_fno, block_id)
+         ORDER BY DOI, grp);
